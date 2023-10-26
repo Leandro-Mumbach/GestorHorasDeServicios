@@ -4,11 +4,11 @@ namespace GestorHorasDeServicios.Repository
 {
     public interface IProyectosRepository
     {
-        Task<IEnumerable<Proyectos>> GetAllProyectos(int pageNumber, int pageSize);
-        Task<Proyectos> GetProyectosById(int CodProyecto);
-        Task<IEnumerable<Proyectos>> GetProyectosState(int Estado);
-        Task AddProyecto(Proyectos Proyecto);
-        Task UpdateProyecto(Proyectos Proyecto);
-        Task DeleteProyectoById(int CodProyectoId);
+        Task<IEnumerable<Proyectos>> GetAll(int pageNumber, int pageSize);
+        Task<Proyectos> GetById(int CodProyecto);
+        Task<IEnumerable<Proyectos>> GetState(int Estado);
+        Task Add(Proyectos Proyecto);
+        Task Update(Proyectos Proyecto);
+        Task DeleteById(int CodProyectoId);
     }
 }

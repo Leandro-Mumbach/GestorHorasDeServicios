@@ -12,7 +12,7 @@ namespace GestorHorasDeServicios.Repository
         {
             _dbContext = dbContext;
         }
-        public async  Task<IEnumerable<Trabajos>> GetAll(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Trabajos>> GetAll(int pageNumber, int pageSize)
         {
             return await _dbContext.Trabajos
                 .Skip((pageNumber - 1) * pageSize)

@@ -1,5 +1,6 @@
 ﻿using GestorHorasDeServicios.Models;
 using GestorHorasDeServicios.Repository;
+using GestorHorasDeServicios.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +10,18 @@ namespace GestorHorasDeServicios.Controllers
     [Route("api/[controller]")]
     public class ProyectosControllers : Controller
     {
-        private readonly IProyectosRepository _proyectosRepository;
+        private readonly IProyectosServices _proyectosServices;
 
-        public ProyectosControllers(IProyectosRepository proyectosRepository)
+        public ProyectosControllers(IProyectosServices proyectosServices)
         {
-            _proyectosRepository = proyectosRepository;
+            _proyectosServices = proyectosServices;
         }
 
         [HttpGet]
         [Authorize]
         public async Task<IActionResult>Get(int pageNumber = 1, int pageSize = 3)
         {
-            var proyectos = await _proyectosRepository.GetAllProyectos(pageNumber, pageSize);
+            var proyectos = await _proyectosServices.GetAllProyectos(pageNumber, pageSize);
             return Ok(proyectos);
         }
 
@@ -28,7 +29,7 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize]
         public async Task<IActionResult>Get(int CodProyecto)
         {
-            var proyecto = await _proyectosRepository.GetProyectosById(CodProyecto);
+            var proyecto = await _proyectosServices.GetProyectosById(CodProyecto);
             if (proyecto == null)
             {
                 return NotFound();
@@ -38,9 +39,9 @@ namespace GestorHorasDeServicios.Controllers
 
         [HttpGet("estado/{estado}")]
         [Authorize]
-        public async Task<IActionResult> GetByEstado(int estado)
+        public async Task<IActionResult> GetProyectosEstado(int estado)
         {
-            var proyectos = await _proyectosRepository.GetProyectosState(estado);
+            var proyectos = await _proyectosServices.GetProyectosByEstado(estado);
             return Ok(proyectos);
         }
 
@@ -48,7 +49,7 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize(Roles = "1")]
         public async Task<IActionResult>Post(Proyectos proyecto)
         {
-            await _proyectosRepository.AddProyecto(proyecto);
+            await _proyectosServices.AddProyecto(proyecto);
             return CreatedAtAction(nameof(Get), new { CodProyecto = proyecto.CodProyecto }, proyecto);
         }
 
@@ -57,7 +58,7 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize(Roles = "1")]
         public async Task<IActionResult>Put(int CodProyecto, Proyectos updatedProyecto)
         {
-            var proyecto = await _proyectosRepository.GetProyectosById(CodProyecto);
+            var proyecto = await _proyectosServices.GetProyectosById(CodProyecto);
             if (proyecto == null)
             {
                 return NotFound();
@@ -65,7 +66,7 @@ namespace GestorHorasDeServicios.Controllers
             proyecto.Nombre = updatedProyecto.Nombre;
             proyecto.Dirección = updatedProyecto.Dirección;
             proyecto.Estado = updatedProyecto.Estado;
-            await _proyectosRepository.UpdateProyecto(proyecto);
+            await _proyectosServices.UpdateProyecto(proyecto);
             return NoContent();
         }
 
@@ -73,12 +74,12 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize(Roles = "1")]
         public async Task<IActionResult>Delete(int CodProyecto)
         {
-            var proyecto = await _proyectosRepository.GetProyectosById(CodProyecto);
+            var proyecto = await _proyectosServices.GetProyectosById(CodProyecto);
             if (proyecto == null)
             {
                 return NotFound();
             }
-            await _proyectosRepository.DeleteProyectoById(CodProyecto);
+            await _proyectosServices.DeleteProyectoById(CodProyecto);
             return NoContent();
         }
     }

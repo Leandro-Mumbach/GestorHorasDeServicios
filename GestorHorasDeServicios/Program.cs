@@ -83,6 +83,7 @@ builder.Services.AddScoped<ITrabajosRepository, TrabajosRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 // Registro de los servicios 
 builder.Services.AddScoped<ITrabajosServices, TrabajosServices>();
+builder.Services.AddScoped<IProyectosServices, ProyectosServices>();
 
 var app = builder.Build();
 
