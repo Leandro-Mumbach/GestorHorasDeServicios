@@ -30,7 +30,7 @@ namespace GestorHorasDeServicios.Controllers
             if (login != null)
             {
                 //if (login.Nombre.Equals(login.Nombre) && login.Contraseña.Equals(login.Contraseña))
-                var usuario = await _usuarioRepository.UsuarioLogin(login.Nombre, login.Contraseña);
+                var usuario = await _usuarioRepository.UsuarioSesion(login.Nombre, login.Contraseña);
                 if (usuario != null)
                 {
                     var issuer = configuration["Jwt:Issuer"];

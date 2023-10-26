@@ -12,7 +12,7 @@ namespace GestorHorasDeServicios.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task <IEnumerable<Usuario>> ObtenerTodosUsuarios(int pageNumber, int pageSize)
+        public async Task <IEnumerable<Usuario>> ObtenerUsuarios(int pageNumber, int pageSize)
         {
             var usuariosPaginados = await _dbContext.Usuario
                 .Skip((pageNumber - 1) * pageSize)
@@ -21,21 +21,21 @@ namespace GestorHorasDeServicios.Repository
 
             return usuariosPaginados;
         }
-        public async Task <Usuario> ObtenerUsuario(int CodUsuario)
+        public async Task <Usuario> ObtenerPorId(int CodUsuario)
         {
             return await _dbContext.Usuario.FirstOrDefaultAsync(p => p.CodUsuario == CodUsuario);
         }
-        public async Task AgregarUsuario(Usuario usuario)
+        public async Task Agregar(Usuario usuario)
         {
             _dbContext.Usuario.Add(usuario);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task EditarUsuario(Usuario usuario)
+        public async Task Editar(Usuario usuario)
         {
             _dbContext.Usuario.Update(usuario);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task BorrarUsuario(int CodUsuario)
+        public async Task Borrar(int CodUsuario)
         {
             var usuario = _dbContext.Usuario.FirstOrDefault(p => p.CodUsuario == CodUsuario);
             if(usuario != null)
@@ -44,7 +44,7 @@ namespace GestorHorasDeServicios.Repository
                 await _dbContext.SaveChangesAsync();
             }
         }
-        public async Task<Usuario> UsuarioLogin(string nombre, string contraseña)
+        public async Task<Usuario> UsuarioSesion(string nombre, string contraseña)
         {
             var usuario = await _dbContext.Usuario.FirstOrDefaultAsync(u => u.Nombre == nombre && u.Contraseña == contraseña);
             return usuario;

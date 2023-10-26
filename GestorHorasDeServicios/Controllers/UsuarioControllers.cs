@@ -2,6 +2,7 @@
 using GestorHorasDeServicios.Models;
 using GestorHorasDeServicios.Models.Dtos;
 using GestorHorasDeServicios.Repository;
+using GestorHorasDeServicios.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -12,12 +13,12 @@ namespace GestorHorasDeServicios.Controllers
     [Route("api/[controller]")]
     public class UsuarioControllers : Controller
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUsuarioServices _usuarioServices;
         public readonly IMapper _mapper;
 
-        public UsuarioControllers(IUsuarioRepository usuarioRepository, IMapper mapper)
+        public UsuarioControllers(IUsuarioServices usuarioServices, IMapper mapper)
         {
-            _usuarioRepository = usuarioRepository;
+            _usuarioServices = usuarioServices;
             _mapper = mapper;
         }
         
@@ -26,7 +27,7 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize]
         public async Task <IActionResult> Get(int pageNumber = 1, int pageSize = 5)
         {
-            var usuarios =await _usuarioRepository.ObtenerTodosUsuarios(pageNumber, pageSize);
+            var usuarios =await _usuarioServices.ObtenerTodosUsuarios(pageNumber, pageSize);
             var userAuxDTO = _mapper.Map<List<UsuarioDto>>(usuarios); 
             return Ok(userAuxDTO);
         }
@@ -35,7 +36,7 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize]
         public async Task<IActionResult> Get(int CodUsuario)
         {
-            var usuario =await _usuarioRepository.ObtenerUsuario(CodUsuario);
+            var usuario =await _usuarioServices.ObtenerUsuario(CodUsuario);
             if (usuario == null)
             {
                 return NotFound();
@@ -47,7 +48,7 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize(Roles = "1")]
         public async Task<IActionResult> Post(Usuario usuario)
         {
-            await _usuarioRepository.AgregarUsuario(usuario);
+            await _usuarioServices.AgregarUsuario(usuario);
             return CreatedAtAction(nameof(Get), new { CodUsuario = usuario.CodUsuario }, usuario);
         }
 
@@ -56,7 +57,7 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize(Roles = "1")]
         public async Task<IActionResult> Put(int CodUsuario, Usuario updatedUsuario)
         {
-            var usuario = await _usuarioRepository.ObtenerUsuario(CodUsuario);
+            var usuario = await _usuarioServices.ObtenerUsuario(CodUsuario);
             if (usuario == null)
             {
                 return NotFound();
@@ -65,7 +66,7 @@ namespace GestorHorasDeServicios.Controllers
             usuario.Dni = updatedUsuario.Dni;
             usuario.Tipo = updatedUsuario.Tipo;
             usuario.Contraseña = updatedUsuario.Contraseña;
-            await _usuarioRepository.EditarUsuario(usuario);
+            await _usuarioServices.EditarUsuario(usuario);
             return NoContent();
         }
 
@@ -73,14 +74,14 @@ namespace GestorHorasDeServicios.Controllers
         [Authorize(Roles = "1")]
         public async Task<IActionResult> Delete(int CodUsuario)
         {
-            var usuario = await _usuarioRepository.ObtenerUsuario(CodUsuario);
+            var usuario = await _usuarioServices.ObtenerUsuario(CodUsuario);
             if (usuario == null)
             {
                 return NotFound();
             }
             else if (usuario.Tipo == 1)
             {
-                await _usuarioRepository.BorrarUsuario(CodUsuario);
+                await _usuarioServices.BorrarUsuario(CodUsuario);
             }
             return NoContent();
         }

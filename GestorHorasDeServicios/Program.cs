@@ -85,7 +85,7 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ITrabajosServices, TrabajosServices>();
 builder.Services.AddScoped<IProyectosServices, ProyectosServices>();
 builder.Services.AddScoped<IServiciosServices, ServiciosServices>();
-//builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
+builder.Services.AddScoped<IUsuarioServices, UsuarioServices>();
 
 var app = builder.Build();
 

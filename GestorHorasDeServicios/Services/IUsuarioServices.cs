@@ -1,6 +1,14 @@
-﻿namespace GestorHorasDeServicios.Services
+﻿using GestorHorasDeServicios.Models;
+
+namespace GestorHorasDeServicios.Services
 {
-    public class IUsuarioServices
+    public interface IUsuarioServices
     {
+        Task<IEnumerable<Usuario>> ObtenerTodosUsuarios(int pageNumber, int pageSize);
+        Task<Usuario> ObtenerUsuario(int CodUsuario);
+        Task AgregarUsuario(Usuario usuario);
+        Task EditarUsuario(Usuario usuario);
+        Task BorrarUsuario(int CodUsuario);
+        Task<Usuario> UsuarioLogin(string nombre, string contraseña);
     }
 }
