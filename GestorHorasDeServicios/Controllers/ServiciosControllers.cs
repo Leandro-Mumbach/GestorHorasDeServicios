@@ -1,5 +1,5 @@
 ﻿using GestorHorasDeServicios.Models;
-using GestorHorasDeServicios.Services;
+using GestorHorasDeServicios.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

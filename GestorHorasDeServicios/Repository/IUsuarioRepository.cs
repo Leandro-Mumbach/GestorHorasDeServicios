@@ -1,11 +1,11 @@
 ﻿using GestorHorasDeServicios.Models;
 
-namespace GestorHorasDeServicios.Services
+namespace GestorHorasDeServicios.Repository
 {
     public interface IUsuarioRepository
     {
         Task<IEnumerable<Usuario>> ObtenerTodosUsuarios(int pageNumber, int pageSize);
-        Task<Usuario>ObtenerUsuario(int CodUsuario);
+        Task<Usuario> ObtenerUsuario(int CodUsuario);
         Task AgregarUsuario(Usuario usuario);
         Task EditarUsuario(Usuario usuario);
         Task BorrarUsuario(int CodUsuario);

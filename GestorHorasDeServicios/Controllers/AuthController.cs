@@ -6,8 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using GestorHorasDeServicios.Models;
 using Microsoft.EntityFrameworkCore;
-using GestorHorasDeServicios.Services;
-
+using GestorHorasDeServicios.Repository;
 
 namespace GestorHorasDeServicios.Controllers
 {

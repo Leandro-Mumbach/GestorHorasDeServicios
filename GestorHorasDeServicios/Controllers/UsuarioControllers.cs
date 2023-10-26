@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using GestorHorasDeServicios.Models;
 using GestorHorasDeServicios.Models.Dtos;
-using GestorHorasDeServicios.Services;
+using GestorHorasDeServicios.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;

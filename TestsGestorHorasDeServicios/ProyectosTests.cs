@@ -1,6 +1,6 @@
 using GestorHorasDeServicios.Controllers;
 using GestorHorasDeServicios.Models;
-using GestorHorasDeServicios.Services;
+using GestorHorasDeServicios.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 

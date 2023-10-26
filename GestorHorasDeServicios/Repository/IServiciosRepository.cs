@@ -1,11 +1,11 @@
 ﻿using GestorHorasDeServicios.Models;
 
-namespace GestorHorasDeServicios.Services
+namespace GestorHorasDeServicios.Repository
 {
     public interface IServiciosRepository
     {
-        Task< IEnumerable<Servicios> >GetAllServicios(int pageNumber, int pageSize);
-        Task <Servicios> GetServiciosById(int CodServicio);
+        Task<IEnumerable<Servicios>> GetAllServicios(int pageNumber, int pageSize);
+        Task<Servicios> GetServiciosById(int CodServicio);
         Task<IEnumerable<Servicios>> GetServiciosState(bool Estado);
         Task AddServicio(Servicios Servicio);
         Task UpdateServicio(Servicios Servicio);
