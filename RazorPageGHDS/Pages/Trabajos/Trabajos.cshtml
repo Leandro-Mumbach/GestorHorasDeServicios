@@ -1,0 +1,51 @@
+﻿@page
+@model TrabajosModel
+@{
+    ViewData["Title"] = "Listado de trabajos";
+}
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <h2>Listado de Trabajos</h2>
+            <table class="table table-info table-striped border">
+                <thead>
+                    <tr>
+                        @*<th class="text-center">ID</th>*@
+                        <th class="text-center">Fecha</th>
+                        @*<th class="text-center">CodProyecto</th>
+                        <th class="text-center">CodServicio</th>*@
+                        <th class="text-center">CantHoras</th>
+                        <th class="text-center">ValorHora</th>
+                        <th class="text-center">Costo</th>
+                        <th class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var trabajo in Model.Trabajos)
+                    {
+                        <tr>
+                            <!-- <td class="text-center">trabajo.CodTrabajo</td> -->
+                            <td class="text-center">@trabajo.Fecha.ToString("dd/MM/yyyy")</td>
+                            <!-- <td class="text-center">trabajo.CodProyecto/td> -->
+                            <!-- <td class="text-center">trabajo.CodServicio</td> -->
+                            <td class="text-center">@trabajo.CantHoras</td>
+                            <td class="text-center">@trabajo.ValorHora</td>
+                            <td class="text-center">@trabajo.Costo</td>
+                            <td class="text-center">
+                                <a asp-page="Editar" asp-route-CodTrabajo="@trabajo.CodTrabajo" class="btn btn-primary">Editar</a>
+                                <button asp-page-handler="Borrar" asp-route-id="@trabajo.CodTrabajo" onclick="return confirm('Esta seguro de querer borrar el trabajo?')" 
+                                class="btn btn-danger btnsm">Borrar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        <div>
+                <div class="d-grid gap-2">
+                    <a asp-page="Agregar" class="btn btn-success">Agregar</a>
+                </div>
+        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@page
+@model RazorPageGHDS.Pages.Trabajos.AgregarModel
+@{
+    ViewData["Title"] = "Crear nuevo trabajo";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="text-info">Crear nuevo trabajo</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @*Agrega vallidación, campo no vacio*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="container" style="padding:30px">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="trabajo.Fecha"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="trabajo.Fecha" class="form-control" />
+                        </div>
+                        <span asp-validation-for="trabajo.Fecha" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="trabajo.CantHoras"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="trabajo.CantHoras" class="form-control" />
+                        </div>
+                        <span asp-validation-for="trabajo.CantHoras" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="trabajo.ValorHora"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="trabajo.ValorHora" class="form-control" />
+                        </div>
+                        <span asp-validation-for="trabajo.ValorHora" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="trabajo.Costo"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="trabajo.Costo" class="form-control" />
+                        </div>
+                        <span asp-validation-for="trabajo.Costo" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2 offset-sm-2">
+                            <input type="submit" value="Agregar" class="btn btn-success form-control"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <a asp-page="Trabajos" class="btn btn-primary form-control">Volver a la lista</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
