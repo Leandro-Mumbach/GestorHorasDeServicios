@@ -1,32 +1,37 @@
-using GestorHorasDeServicios.Models;
-using GestorHorasDeServicios.Services;
+using GestorHorasDeServicios.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using AutoMapper;
 
 namespace RazorPageGHDS.Pages.Trabajos
 {
     public class AgregarModel : PageModel
     {
-        private readonly ITrabajosServices _trabajosServices;
-
-        [BindProperty]
-        public GestorHorasDeServicios.Models.Trabajos trabajo { get; set; }
-
-        public AgregarModel(ITrabajosServices trabajosServices)
+        private readonly HttpClient _httpClient;
+        public AgregarModel()
         {
-            _trabajosServices = trabajosServices;
+            _httpClient = new HttpClient();
         }
 
-        public async Task<IActionResult> OnPost()
+        [BindProperty]
+        public TrabajosDto Trabajo { get; set; }
+
+
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid == false)
             {
-                await _trabajosServices.AddTrabajos(trabajo);
+                return Page();
+            }
+            var response = await _httpClient.PostAsJsonAsync($"https://localhost:7103/api/TrabajosControllers",Trabajo);
+
+            if (response.IsSuccessStatusCode)
+            {
                 return RedirectToPage("Trabajos");
             }
-
-            return Page();
+            else
+            {
+                return Page();
+            }
         }
     }
 }

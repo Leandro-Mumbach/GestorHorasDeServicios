@@ -1,32 +1,31 @@
-using GestorHorasDeServicios.Models.Dtos;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-
-namespace RazorPageGHDS.Pages.Trabajos
+namespace RazorPageGHDS.Pages.Proyectos
 {
-    public class TrabajosModel : PageModel
+    public class ProyectosModel : PageModel
     {
-        public List<TrabajosDto> Trabajos { get; set; }
+        public List<GestorHorasDeServicios.Models.Proyectos> proyectos { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
+
         public async Task OnGetAsync(int pageNumber = 1, int pageSize = 2)
         {
             using (var httpClient = new HttpClient())
             {
-                var response = await httpClient.GetAsync($"https://localhost:7103/api/TrabajosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
+                var response = await httpClient.GetAsync($"https://localhost:7103/api/ProyectosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Trabajos = await response.Content.ReadFromJsonAsync<List<TrabajosDto>>();
+                    proyectos = await response.Content.ReadFromJsonAsync<List<GestorHorasDeServicios.Models.Proyectos>>();
 
-                    TotalPages = Trabajos.Count;//(int)Math.Ceiling((double)Trabajos.Count / PageSize)
+                    TotalPages = proyectos.Count;
                     PageNumber = pageNumber;
                     PageSize = pageSize;
                 }
                 else
                 {
-                    Trabajos = new List<TrabajosDto>();
+                    proyectos = new List<GestorHorasDeServicios.Models.Proyectos>();
                 }
             }
         }

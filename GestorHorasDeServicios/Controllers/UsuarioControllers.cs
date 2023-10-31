@@ -25,7 +25,7 @@ namespace GestorHorasDeServicios.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task <IActionResult> Get(int pageNumber = 1, int pageSize = 5)
+        public async Task <IActionResult> Get(int pageNumber, int pageSize)
         {
             var usuarios =await _usuarioServices.ObtenerTodosUsuarios(pageNumber, pageSize);
             var userAuxDTO = _mapper.Map<List<UsuarioDto>>(usuarios); 

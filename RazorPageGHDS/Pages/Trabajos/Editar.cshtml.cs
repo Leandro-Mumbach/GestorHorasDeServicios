@@ -1,34 +1,53 @@
-using GestorHorasDeServicios.Services;
+using GestorHorasDeServicios.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace RazorPageGHDS.Pages.Trabajos
 {
     public class EditarModel : PageModel
     {
-        private readonly ITrabajosServices _trabajosServices;
-        public EditarModel(ITrabajosServices trabajosServices)
+        private readonly HttpClient _httpClient;
+
+        public EditarModel()
         {
-            _trabajosServices = trabajosServices;
+            _httpClient = new HttpClient();
         }
+
         [BindProperty]
-        public GestorHorasDeServicios.Models.Trabajos trabajo { get; set; }
+        public TrabajosDto Trabajo { get; set; }
 
-
-        public async Task OnGet(int CodTrabajo)
+        public async Task<IActionResult> OnGetAsync(int CodTrabajo)
         {
-            trabajo = await _trabajosServices.GetTrabajosById(CodTrabajo);
+            var response = await _httpClient.GetAsync($"https://localhost:7103/api/TrabajosControllers/"+CodTrabajo);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Trabajo = await response.Content.ReadFromJsonAsync<TrabajosDto>();
+                return Page();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid == false)
             {
-                await _trabajosServices.UpdateTrabajo(trabajo);
+                return Page();
+            }
+            var response = await _httpClient.PutAsJsonAsync($"https://localhost:7103/api/TrabajosControllers/{Trabajo.CodTrabajo}", Trabajo);
+
+            if (response.IsSuccessStatusCode)
+            {
                 return RedirectToPage("Trabajos");
             }
-
-            return RedirectToPage();
+            else
+            {
+                return Page();
+            }
         }
     }
 }

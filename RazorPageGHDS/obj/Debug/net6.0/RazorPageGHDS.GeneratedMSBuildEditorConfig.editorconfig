@@ -24,20 +24,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Login/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Proyectos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJveWVjdG9zLmNzaHRtbA==
+[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Proyectos/Proyectos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJveWVjdG9zXFByb3llY3Rvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Servicios.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VydmljaW9zLmNzaHRtbA==
+[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Servicios/Servicios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VydmljaW9zXFNlcnZpY2lvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Shared/_ValidationScriptsPartial.cshtml]
@@ -56,8 +56,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhYmFqb3NcVHJhYmFqb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Usuarios.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXN1YXJpb3MuY3NodG1s
+[C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/Usuarios/Usuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXN1YXJpb3NcVXN1YXJpb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lean2/source/repos/ProyectoIntegrador/RazorPageGHDS/Pages/_ViewImports.cshtml]

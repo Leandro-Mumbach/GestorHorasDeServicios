@@ -1,0 +1,31 @@
+﻿@page
+@model RazorPageGHDS.Pages.Login.LoginModel
+@{
+}
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-sm-6 mx-auto bg-secondary py-4">
+            <form asp-controller="AuthController" asp-action="Auth" method="post">
+
+                <div class="form-group pb-3">
+                    <label asp-for="usuario.Nombre" for="username">Usuario</label>
+                    <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario" asp-for="usuario.Nombre">
+                </div>
+                <span asp-validation-for="usuario.Nombre" class="text-danger"></span>
+
+                <div class="form-group pb-3">
+                    <label asp-for="usuario.Contraseña" for="password">Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" asp-for="usuario.Contraseña">
+                </div>
+                <span asp-validation-for="usuario.Contraseña" class="text-danger"></span>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
