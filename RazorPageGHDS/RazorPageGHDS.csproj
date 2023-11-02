@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\imagenes\retos-empresas-tecnologia-2019.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GestorHorasDeServicios\GestorHorasDeServicios.csproj" />
   </ItemGroup>
 

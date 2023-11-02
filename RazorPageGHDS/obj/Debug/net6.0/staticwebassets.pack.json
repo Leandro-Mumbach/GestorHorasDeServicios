@@ -5,12 +5,28 @@
       "PackagePath": "staticwebassets\\RazorPageGHDS.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\lean2\\source\\repos\\ProyectoIntegrador\\RazorPageGHDS\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\lean2\\source\\repos\\ProyectoIntegrador\\RazorPageGHDS\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\lean2\\source\\repos\\ProyectoIntegrador\\RazorPageGHDS\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\lean2\\source\\repos\\ProyectoIntegrador\\RazorPageGHDS\\wwwroot\\imagenes\\Header-TechOil.png",
+      "PackagePath": "staticwebassets\\imagenes\\Header-TechOil.png"
+    },
+    {
+      "Id": "C:\\Users\\lean2\\source\\repos\\ProyectoIntegrador\\RazorPageGHDS\\wwwroot\\imagenes\\Logo-TechOil.png",
+      "PackagePath": "staticwebassets\\imagenes\\Logo-TechOil.png"
+    },
+    {
+      "Id": "C:\\Users\\lean2\\source\\repos\\ProyectoIntegrador\\RazorPageGHDS\\wwwroot\\imagenes\\retos-empresas-tecnologia-2019.jpg",
+      "PackagePath": "staticwebassets\\imagenes\\retos-empresas-tecnologia-2019.jpg"
     },
     {
       "Id": "C:\\Users\\lean2\\source\\repos\\ProyectoIntegrador\\RazorPageGHDS\\wwwroot\\js\\site.js",

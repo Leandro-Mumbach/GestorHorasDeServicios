@@ -46,3 +46,11 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* MI CODIGO */
+
+/*NavBar*/
+.nav-background {
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+}
+

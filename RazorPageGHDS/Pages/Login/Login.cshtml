@@ -1,11 +1,21 @@
 ﻿@page
 @model RazorPageGHDS.Pages.Login.LoginModel
 @{
+    ViewData["Title"] = "Listado de trabajos";
 }
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RazorPageGHDS</title>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RazorPageGHDS.styles.css" asp-append-version="true" />
+</head>
 <div class="container pt-5">
     <div class="row">
-        <div class="col-sm-6 mx-auto bg-secondary py-4">
+        <div class="login-div-3 col-sm-6 mx-auto py-5">
             <form asp-controller="AuthController" asp-action="Auth" method="post">
 
                 <div class="form-group pb-3">
@@ -29,7 +39,7 @@
         </div>
     </div>
 </div>
-@section Scripts {
+@* @section Scripts {
     <script>
         // Almacena el nombre de usuario en sessionStorage al enviar el formulario
         document.getElementById("username").addEventListener("input", function () {
@@ -56,3 +66,4 @@
         });
     </script>
 }
+ *@
