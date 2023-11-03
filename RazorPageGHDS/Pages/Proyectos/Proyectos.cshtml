@@ -7,7 +7,7 @@
 <div class="container my-3">
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-            <h2>Listado de Proyectos</h2>
+            <h2 class="text-info">Listado de Proyectos</h2>
             <form method="post">
                 <table class="table table-info table-striped border">
                     <thead>
@@ -28,8 +28,8 @@
                                 <td class="text-center">@Proyecto.Dirección</td>
                                 <td class="text-center">@Proyecto.Estado</td>
                                 <td class="text-center">
-                                    <a asp-page="Editar" asp-route-CodTrabajo="@Proyecto.CodProyecto" class="btn btn-primary">Editar</a>
-                                    <button asp-page-handler="Borrar" asp-route-CodTrabajo="@Proyecto.CodProyecto" onclick="return confirm('Esta seguro de querer borrar el trabajo?')"
+                                    <a asp-page="Editar" asp-route-CodProyecto="@Proyecto.CodProyecto" class="btn btn-primary">Editar</a>
+                                    <button asp-page-handler="Borrar" asp-route-CodProyecto="@Proyecto.CodProyecto" onclick="return confirm('Esta seguro de querer borrar el proyecto?')"
                                             class="btn btn-danger btnsm">
                                         Borrar
                                     </button>
@@ -73,7 +73,7 @@
             </div>
             <div>
                 <div class="d-grid gap-2">
-                    <a asp-page="Agregar" class="btn btn-success">Agregar</a>
+                    <a asp-page="Agregar" class="btn boton-success">Agregar</a>
                 </div>
             </div>
         </div>

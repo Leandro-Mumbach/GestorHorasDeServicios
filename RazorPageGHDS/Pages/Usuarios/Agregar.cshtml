@@ -1,12 +1,12 @@
 ﻿@page
-@model RazorPageGHDS.Pages.Trabajos.AgregarModel
+@model RazorPageGHDS.Pages.Usuarios.AgregarModel
 @{
-    ViewData["Title"] = "Crear nuevo trabajo";
+    ViewData["Title"] = "Crear nuevo usuario";
 }
 
 <div class="card">
     <div class="card-header">
-        <h2 class="text-info">Crear nuevo trabajo</h2>
+        <h2 class="text-info">Crear nuevo usuario</h2>
     </div>
     <div class="card-body">
         <form method="post">
@@ -17,58 +17,58 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-2">
-                            <label asp-for="Trabajo.Fecha"></label>
+                            <label asp-for="User.Nombre"></label>
                         </div>
                         <div class="col-sm-6">
-                            <input asp-for="Trabajo.Fecha" type="date" class="form-control" />
+                            <input asp-for="User.Nombre" class="form-control" />
                         </div>
-                        <span asp-validation-for="Trabajo.Fecha" class="text-danger"></span>
+                        <span asp-validation-for="User.Nombre" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-2">
-                            <label asp-for="Trabajo.CantHoras"></label>
+                            <label asp-for="User.Dni"></label>
                         </div>
                         <div class="col-sm-6">
-                            <input asp-for="Trabajo.CantHoras" class="form-control" />
+                            <input asp-for="User.Dni" class="form-control" />
                         </div>
-                        <span asp-validation-for="Trabajo.CantHoras" class="text-danger"></span>
+                        <span asp-validation-for="User.Dni" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-2">
-                            <label asp-for="Trabajo.ValorHora"></label>
+                            <label asp-for="User.Tipo"></label>
                         </div>
                         <div class="col-sm-6">
-                            <input asp-for="Trabajo.ValorHora" class="form-control" />
+                            <input asp-for="User.Tipo" class="form-control" />
                         </div>
-                        <span asp-validation-for="Trabajo.ValorHora" class="text-danger"></span>
+                        <span asp-validation-for="User.Tipo" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-2">
-                            <label asp-for="Trabajo.Costo"></label>
+                            <label asp-for="User.Contraseña"></label>
                         </div>
                         <div class="col-sm-6">
-                            <input asp-for="Trabajo.Costo" class="form-control" />
+                            <input asp-for="User.Contraseña"  class="form-control" />
                         </div>
-                        <span asp-validation-for="Trabajo.Costo" class="text-danger"></span>
+                        <span asp-validation-for="User.Contraseña" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-2 offset-sm-2">
-                            <input type="submit" value="Agregar" class="btn btn-success form-control"/>
+                            <input type="submit" value="Agregar" class="btn btn-success form-control" />
                         </div>
                         <div class="col-sm-4">
-                            <a asp-page="Trabajos" class="btn btn-primary form-control">Volver a la lista</a>
+                            <a asp-page="Usuarios" class="btn btn-primary form-control">Volver a la lista</a>
                         </div>
                     </div>
                 </div>

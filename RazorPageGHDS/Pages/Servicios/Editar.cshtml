@@ -1,0 +1,68 @@
+﻿@page
+@model RazorPageGHDS.Pages.Servicios.EditarModel
+@{
+    ViewData["Title"] = "Editar servicio";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="text-info">Editar servicio</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            @*Agrega vallidación, campo no vacio*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*Se envia Id oculto*@
+            <input type="hidden" asp-for="Servicios.CodServicio" />
+
+            <div class="container" style="padding:30px">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="Servicios.Descr"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="Servicios.Descr" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Servicios.Descr" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="Servicios.Estado"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="Servicios.Estado" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Servicios.Estado" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label asp-for="Servicios.ValorHora"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input asp-for="Servicios.ValorHora" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Servicios.ValorHora" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2 offset-sm-2">
+                            <input type="submit" value="Editar" class="btn btn-success form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                            <a asp-page="Servicios" class="btn btn-primary form-control">Volver a la lista</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

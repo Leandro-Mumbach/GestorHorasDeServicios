@@ -7,7 +7,7 @@
 <div class="container my-3">
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-            <h2>Listado de servicios</h2>
+            <h2 class="text-info">Listado de servicios</h2>
             <form method="post">
                 <table class="table table-info table-striped border">
                     <thead>
@@ -30,8 +30,7 @@
                                 <td class="text-center">
                                     <a asp-page="Editar" asp-route-CodServicio="@servicios.CodServicio" class="btn btn-primary">Editar</a>
                                     <button asp-page-handler="Borrar" asp-route-CodServicio="@servicios.CodServicio" onclick="return confirm('Esta seguro de querer borrar el servicio?')"
-                                            class="btn btn-danger btnsm">
-                                        Borrar
+                                     class="btn btn-danger btnsm"> Borrar
                                     </button>
                                 </td>
                             </tr>
@@ -73,7 +72,7 @@
             </div>
             <div>
                 <div class="d-grid gap-2">
-                    <a asp-page="Agregar" class="btn btn-success">Agregar</a>
+                    <a asp-page="Agregar" class="btn boton-success">Agregar</a>
                 </div>
             </div>
         </div>

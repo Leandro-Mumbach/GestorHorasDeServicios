@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GestorHorasDeServicios.Models;
 using GestorHorasDeServicios.Models.Dtos;
-using GestorHorasDeServicios.Repository;
 using GestorHorasDeServicios.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,9 +52,10 @@ namespace GestorHorasDeServicios.Controllers
         }
 
 
+    
         [HttpPut("{CodUsuario}")]
         //[Authorize(Roles = "1")]
-        public async Task<IActionResult> Put(int CodUsuario, Usuario updatedUsuario)
+        public async Task<IActionResult> Put(int CodUsuario, UsuarioDto updatedUsuario)
         {
             var usuario = await _usuarioServices.ObtenerUsuario(CodUsuario);
             if (usuario == null)
@@ -65,7 +65,8 @@ namespace GestorHorasDeServicios.Controllers
             usuario.Nombre = updatedUsuario.Nombre;
             usuario.Dni = updatedUsuario.Dni;
             usuario.Tipo = updatedUsuario.Tipo;
-            usuario.Contraseña = updatedUsuario.Contraseña;
+            //usuario.Contraseña = updatedUsuario.Contraseña;
+
             await _usuarioServices.EditarUsuario(usuario);
             return NoContent();
         }
@@ -79,11 +80,10 @@ namespace GestorHorasDeServicios.Controllers
             {
                 return NotFound();
             }
-            else if (usuario.Tipo == 1)
-            {
-                await _usuarioServices.BorrarUsuario(CodUsuario);
-            }
+            
+            await _usuarioServices.BorrarUsuario(CodUsuario);
             return NoContent();
+            
         }
     }
 }

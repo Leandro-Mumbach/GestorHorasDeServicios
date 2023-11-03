@@ -1,37 +1,60 @@
 using GestorHorasDeServicios.Models;
-using GestorHorasDeServicios.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net.Http.Headers;
 
 namespace RazorPageGHDS.Pages
 {
     public class ServiciosModel : PageModel
     {
-        private readonly IServiciosServices _serviciosServices;
-        public ServiciosModel(IServiciosServices proyectosServices)
-        {
-            _serviciosServices = proyectosServices;
-        }
         public List<GestorHorasDeServicios.Models.Servicios> Servicios { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
 
-        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 2)
+
+
+        //Metodo OnGet
+        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 5)
         {
-            var servicios = await _serviciosServices.GetAllServicios(pageNumber, pageSize);
-            Servicios = servicios.ToList();
+            using (var httpClient = new HttpClient())
+            {
+                var token = "";
+                var response = await httpClient.GetAsync($"https://localhost:7103/api/ServiciosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
 
-            TotalPages = Servicios.Count;
+                if (response.IsSuccessStatusCode)
+                {
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    Servicios = await response.Content.ReadFromJsonAsync<List<GestorHorasDeServicios.Models.Servicios>>();
 
-            PageNumber = pageNumber;
-            PageSize = pageSize;
+                    TotalPages = Servicios.Count;//(int)Math.Ceiling((double)Trabajos.Count / PageSize)
+                    PageNumber = pageNumber;
+                    PageSize = pageSize;
+                }
+                else
+                {
+                    Servicios = new List<GestorHorasDeServicios.Models.Servicios>();
+                }
+            }
         }
 
-        public async Task<IActionResult> OnPostBorrar(int CodTrabajo)
+
+
+        //Metodo OnPost
+        public async Task<IActionResult> OnPostBorrar(int CodServicio)
         {
-            await _serviciosServices.DeleteServicioById(CodTrabajo);
-            return RedirectToPage("Servicios");
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.DeleteAsync($"https://localhost:7103/api/ServiciosControllers/{CodServicio}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToPage("Servicios");
+                }
+                else
+                {
+                    return Page();
+                }
+            }
         }
     }
 }

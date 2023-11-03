@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RazorPageGHDS.Pages.Proyectos
@@ -26,6 +27,22 @@ namespace RazorPageGHDS.Pages.Proyectos
                 else
                 {
                     proyectos = new List<GestorHorasDeServicios.Models.Proyectos>();
+                }
+            }
+        }
+
+        public async Task<IActionResult> OnPostBorrar(int CodProyecto)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.DeleteAsync($"https://localhost:7103/api/ProyectosControllers/{CodProyecto}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToPage("Proyectos");
+                }
+                else
+                {
+                    return Page();
                 }
             }
         }

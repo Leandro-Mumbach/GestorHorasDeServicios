@@ -41,3 +41,11 @@ body {
     color: #fff;
     background-color: #152f37;
 }
+.boton-success {
+    color: #fff;
+    background-color: #356169;
+}
+.boton-success:hover {
+    color: #fff;
+    background-color: #92cace;
+}

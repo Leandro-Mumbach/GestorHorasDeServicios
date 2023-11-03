@@ -1,8 +1,6 @@
 using GestorHorasDeServicios.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
 
 namespace RazorPageGHDS.Pages.Trabajos
@@ -17,7 +15,7 @@ namespace RazorPageGHDS.Pages.Trabajos
 
 
 //Metodo OnGet
-        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 5)
+        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 2)
         {
             using (var httpClient = new HttpClient())
             {
@@ -29,7 +27,7 @@ namespace RazorPageGHDS.Pages.Trabajos
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     Trabajos = await response.Content.ReadFromJsonAsync<List<TrabajosDto>>();
 
-                    TotalPages = Trabajos.Count;//(int)Math.Ceiling((double)Trabajos.Count / PageSize)
+                    TotalPages = Trabajos.Count;
                     PageNumber = pageNumber;
                     PageSize = pageSize;
                 }

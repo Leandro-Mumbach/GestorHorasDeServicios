@@ -1,49 +1,60 @@
-using AutoMapper;
 using GestorHorasDeServicios.Models.Dtos;
-using GestorHorasDeServicios.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net.Http.Headers;
 
 namespace RazorPageGHDS.Pages
 {
     public class UsuariosModel : PageModel
     {
-        private readonly IUsuarioServices _usuarioServices;
-        private readonly IMapper _mapper;
-
-        public UsuariosModel(IUsuarioServices usuarioServices, IMapper mapper)
-        {
-            _usuarioServices = usuarioServices;
-            _mapper = mapper;
-        }
         public List<UsuarioDto> Usuario { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
 
-        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 3)
+
+
+        //Metodo OnGet
+        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 5)
         {
-            var usuario = await _usuarioServices.ObtenerTodosUsuarios(pageNumber, pageSize);
-            Usuario = usuario.Select(t => new UsuarioDto
+            using (var httpClient = new HttpClient())
             {
-                CodUsuario = t.CodUsuario,
-                Nombre = t.Nombre,
-                Dni = t.Dni,
-                Tipo = t.Tipo,
-            }).ToList();
+                var token = "";
+                var response = await httpClient.GetAsync($"https://localhost:7103/api/UsuarioControllers?pageNumber={pageNumber}&pageSize={pageSize}");
 
-            // Obtener el total de trabajos
-            TotalPages = Usuario.Count;
+                if (response.IsSuccessStatusCode)
+                {
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    Usuario = await response.Content.ReadFromJsonAsync<List<UsuarioDto>>();
 
-            // Actualizar los valores de la paginación
-            PageNumber = pageNumber;
-            PageSize = pageSize;
+                    TotalPages = Usuario.Count;//(int)Math.Ceiling((double)Trabajos.Count / PageSize)
+                    PageNumber = pageNumber;
+                    PageSize = pageSize;
+                }
+                else
+                {
+                    Usuario = new List<UsuarioDto>();
+                }
+            }
         }
 
+
+
+        //Metodo OnPost
         public async Task<IActionResult> OnPostBorrar(int CodUsuario)
         {
-            await _usuarioServices.BorrarUsuario(CodUsuario);
-            return RedirectToPage("Usuario");
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.DeleteAsync($"https://localhost:7103/api/UsuarioControllers/{CodUsuario}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToPage("Usuarios");
+                }
+                else
+                {
+                    return Page();
+                }
+            }
         }
     }
 }

@@ -41,7 +41,7 @@ namespace RazorPageGHDS.Pages.Login
             {
                 var token = await response.Content.ReadAsStringAsync();
 
-                // Aquí puedes hacer uso del token obtenido, como almacenarlo en una cookie o sesión
+                //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 return RedirectToPage("/Index");
             }
