@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GestorHorasDeServicios.Models;
 using GestorHorasDeServicios.Models.Dtos;
-using GestorHorasDeServicios.Repository;
 using GestorHorasDeServicios.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +23,8 @@ namespace GestorHorasDeServicios.Controllers
         
 
         [HttpGet]
-        [Authorize]
-        public async Task <IActionResult> Get(int pageNumber = 1, int pageSize = 5)
+        //[Authorize]
+        public async Task <IActionResult> Get(int pageNumber, int pageSize)
         {
             var usuarios =await _usuarioServices.ObtenerTodosUsuarios(pageNumber, pageSize);
             var userAuxDTO = _mapper.Map<List<UsuarioDto>>(usuarios); 
@@ -33,7 +32,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet("{CodUsuario}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Get(int CodUsuario)
         {
             var usuario =await _usuarioServices.ObtenerUsuario(CodUsuario);
@@ -45,7 +44,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         public async Task<IActionResult> Post(Usuario usuario)
         {
             await _usuarioServices.AgregarUsuario(usuario);
@@ -53,9 +52,10 @@ namespace GestorHorasDeServicios.Controllers
         }
 
 
+    
         [HttpPut("{CodUsuario}")]
-        [Authorize(Roles = "1")]
-        public async Task<IActionResult> Put(int CodUsuario, Usuario updatedUsuario)
+        //[Authorize(Roles = "1")]
+        public async Task<IActionResult> Put(int CodUsuario, UsuarioDto updatedUsuario)
         {
             var usuario = await _usuarioServices.ObtenerUsuario(CodUsuario);
             if (usuario == null)
@@ -65,13 +65,14 @@ namespace GestorHorasDeServicios.Controllers
             usuario.Nombre = updatedUsuario.Nombre;
             usuario.Dni = updatedUsuario.Dni;
             usuario.Tipo = updatedUsuario.Tipo;
-            usuario.Contraseña = updatedUsuario.Contraseña;
+            //usuario.Contraseña = updatedUsuario.Contraseña;
+
             await _usuarioServices.EditarUsuario(usuario);
             return NoContent();
         }
 
         [HttpDelete("{CodUsuario}")]
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         public async Task<IActionResult> Delete(int CodUsuario)
         {
             var usuario = await _usuarioServices.ObtenerUsuario(CodUsuario);
@@ -79,11 +80,10 @@ namespace GestorHorasDeServicios.Controllers
             {
                 return NotFound();
             }
-            else if (usuario.Tipo == 1)
-            {
-                await _usuarioServices.BorrarUsuario(CodUsuario);
-            }
+            
+            await _usuarioServices.BorrarUsuario(CodUsuario);
             return NoContent();
+            
         }
     }
 }

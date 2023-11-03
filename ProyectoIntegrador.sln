@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestorHorasDeServicios", "GestorHorasDeServicios\GestorHorasDeServicios.csproj", "{91BD55B5-3964-4BB5-BB66-142749C8E5B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsGestorHorasDeServicios", "TestsGestorHorasDeServicios\TestsGestorHorasDeServicios.csproj", "{85486CB1-F64F-40E4-A8FA-BA70B0506911}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsGestorHorasDeServicios", "TestsGestorHorasDeServicios\TestsGestorHorasDeServicios.csproj", "{85486CB1-F64F-40E4-A8FA-BA70B0506911}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPageGHDS", "RazorPageGHDS\RazorPageGHDS.csproj", "{758020E1-94C2-40AA-80C6-669A7D7530A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{85486CB1-F64F-40E4-A8FA-BA70B0506911}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85486CB1-F64F-40E4-A8FA-BA70B0506911}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85486CB1-F64F-40E4-A8FA-BA70B0506911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{758020E1-94C2-40AA-80C6-669A7D7530A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{758020E1-94C2-40AA-80C6-669A7D7530A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{758020E1-94C2-40AA-80C6-669A7D7530A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{758020E1-94C2-40AA-80C6-669A7D7530A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

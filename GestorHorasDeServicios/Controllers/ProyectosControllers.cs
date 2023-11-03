@@ -17,7 +17,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize(Roles = "1")]
         public async Task<IActionResult>Get(int pageNumber = 1, int pageSize = 3)
         {
             var proyectos = await _proyectosServices.GetAllProyectos(pageNumber, pageSize);
@@ -25,7 +25,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet("{CodProyecto}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult>Get(int CodProyecto)
         {
             var proyecto = await _proyectosServices.GetProyectosById(CodProyecto);
@@ -37,7 +37,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet("estado/{estado}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetProyectosEstado(int estado)
         {
             var proyectos = await _proyectosServices.GetProyectosByEstado(estado);
@@ -45,7 +45,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         public async Task<IActionResult>Post(Proyectos proyecto)
         {
             await _proyectosServices.AddProyecto(proyecto);
@@ -54,7 +54,7 @@ namespace GestorHorasDeServicios.Controllers
 
 
         [HttpPut("{CodProyecto}")]
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         public async Task<IActionResult>Put(int CodProyecto, Proyectos updatedProyecto)
         {
             var proyecto = await _proyectosServices.GetProyectosById(CodProyecto);
@@ -70,7 +70,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpDelete("{CodProyecto}")]
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         public async Task<IActionResult>Delete(int CodProyecto)
         {
             var proyecto = await _proyectosServices.GetProyectosById(CodProyecto);

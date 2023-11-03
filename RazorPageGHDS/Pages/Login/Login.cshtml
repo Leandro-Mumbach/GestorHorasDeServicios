@@ -1,0 +1,69 @@
+﻿@page
+@model RazorPageGHDS.Pages.Login.LoginModel
+@{
+    ViewData["Title"] = "Listado de trabajos";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RazorPageGHDS</title>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RazorPageGHDS.styles.css" asp-append-version="true" />
+</head>
+<div class="container pt-5">
+    <div class="row">
+        <div class="login-div-3 col-sm-6 mx-auto py-5">
+            <form asp-controller="AuthController" asp-action="Auth" method="post">
+
+                <div class="form-group pb-3">
+                    <label asp-for="Usuario.Nombre" for="username">Usuario</label>
+                    <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario" asp-for="Usuario.Nombre">
+                </div>
+                <span asp-validation-for="Usuario.Nombre" class="text-danger"></span>
+
+                <div class="form-group pb-3">
+                    <label asp-for="Usuario.Contraseña" for="password">Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" asp-for="Usuario.Contraseña">
+                </div>
+                <span asp-validation-for="Usuario.Contraseña" class="text-danger"></span>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+@* @section Scripts {
+    <script>
+        // Almacena el nombre de usuario en sessionStorage al enviar el formulario
+        document.getElementById("username").addEventListener("input", function () {
+            sessionStorage.setItem("username", this.value);
+        });
+
+        // Almacena la contraseña en sessionStorage al enviar el formulario
+        document.getElementById("password").addEventListener("input", function () {
+            sessionStorage.setItem("password", this.value);
+        });
+
+        // Recupera los valores almacenados en sessionStorage al cargar la página
+        window.addEventListener("load", function () {
+            var username = sessionStorage.getItem("username");
+            var password = sessionStorage.getItem("password");
+
+            if (username) {
+                document.getElementById("username").value = username;
+            }
+
+            if (password) {
+                document.getElementById("password").value = password;
+            }
+        });
+    </script>
+}
+ *@

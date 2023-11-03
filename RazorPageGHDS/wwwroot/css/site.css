@@ -1,0 +1,51 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #f0fbfb
+}
+
+/*MI CODIGO*/
+.Privacy-p {
+    background: linear-gradient(to right, #434343, #000000);
+    text-align: center;
+}
+.home-div-container {
+    white-space-collapse: preserve-breaks;
+}
+.img-main {
+    height: -webkit-fill-available;
+}
+.header-logo {
+    border-radius: 30%;
+    width: -webkit-fill-available;
+}
+.buton-primary {
+    color: #fff;
+    background-color: #4eb8c2;
+}
+.buton-primary:hover {
+    color: #fff;
+    background-color: #152f37;
+}
+.boton-success {
+    color: #fff;
+    background-color: #356169;
+}
+.boton-success:hover {
+    color: #fff;
+    background-color: #92cace;
+}

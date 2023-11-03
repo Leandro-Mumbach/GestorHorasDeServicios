@@ -5,8 +5,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using GestorHorasDeServicios.Models;
-using Microsoft.EntityFrameworkCore;
-using GestorHorasDeServicios.Repository;
+
+using GestorHorasDeServicios.Services;
 
 namespace GestorHorasDeServicios.Controllers
 {
@@ -15,12 +15,12 @@ namespace GestorHorasDeServicios.Controllers
     public class AuthController : Controller
     {
         IConfiguration configuration;
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUsuarioServices _usuarioServices;
 
-        public AuthController(IConfiguration configuration, IUsuarioRepository usuarioRepository)
+        public AuthController(IConfiguration configuration, IUsuarioServices usuarioServices)
         {
             this.configuration = configuration;
-            _usuarioRepository = usuarioRepository;
+            _usuarioServices = usuarioServices;
         }
         [AllowAnonymous]
         [HttpPost]
@@ -30,7 +30,7 @@ namespace GestorHorasDeServicios.Controllers
             if (login != null)
             {
                 //if (login.Nombre.Equals(login.Nombre) && login.Contraseña.Equals(login.Contraseña))
-                var usuario = await _usuarioRepository.UsuarioSesion(login.Nombre, login.Contraseña);
+                var usuario = await _usuarioServices.UsuarioLogin(login.Nombre, login.Contraseña);
                 if (usuario != null)
                 {
                     var issuer = configuration["Jwt:Issuer"];
