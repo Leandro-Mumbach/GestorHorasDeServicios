@@ -15,6 +15,8 @@ namespace RazorPageGHDS.Pages.Proyectos
 
         [BindProperty]
         public GestorHorasDeServicios.Models.Proyectos Proyecto { get; set; }
+        [TempData]
+        public string Mensaje { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int CodProyecto)
         {
@@ -41,6 +43,7 @@ namespace RazorPageGHDS.Pages.Proyectos
 
             if (response.IsSuccessStatusCode)
             {
+                Mensaje = "Proyecto editado correctamente";
                 return RedirectToPage("Proyectos");
             }
             else
