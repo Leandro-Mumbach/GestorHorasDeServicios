@@ -17,7 +17,7 @@
                         <div class="col-sm-2">
                             <label asp-for="Servicio.Descr"></label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 mb-2">
                             <input asp-for="Servicio.Descr" class="form-control" />
                         </div>
                         <span asp-validation-for="Servicio.Descr" class="text-danger"></span>
@@ -29,8 +29,12 @@
                         <div class="col-sm-2">
                             <label asp-for="Servicio.Estado"></label>
                         </div>
-                        <div class="col-sm-6">
-                            <input asp-for="Servicio.Estado" class="form-control" />
+                        <div class="col-sm-6 mb-2">
+                            <select asp-for="Servicio.Estado" class="form-control">
+                                <option value="">Seleccionar Estado</option>
+                                <option value="true">Disponible</option>
+                                <option value="false">No Disponible</option>
+                            </select>
                         </div>
                         <span asp-validation-for="Servicio.Estado" class="text-danger"></span>
                     </div>
@@ -41,7 +45,7 @@
                         <div class="col-sm-2">
                             <label asp-for="Servicio.ValorHora"></label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 mb-2">
                             <input asp-for="Servicio.ValorHora" class="form-control" />
                         </div>
                         <span asp-validation-for="Servicio.ValorHora" class="text-danger"></span>

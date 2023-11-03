@@ -15,7 +15,7 @@ namespace RazorPageGHDS.Pages.Trabajos
 
 
 //Metodo OnGet
-        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 2)
+        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 5)
         {
             using (var httpClient = new HttpClient())
             {
