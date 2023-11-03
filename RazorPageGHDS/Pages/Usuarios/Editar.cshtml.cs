@@ -15,6 +15,8 @@ namespace RazorPageGHDS.Pages.Usuarios
 
         [BindProperty]
         public UsuarioDto User { get; set; }
+        [TempData]
+        public string Mensaje { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int CodUsuario)
         {
@@ -49,6 +51,7 @@ namespace RazorPageGHDS.Pages.Usuarios
 
             if (response.IsSuccessStatusCode)
             {
+                Mensaje = "Proyecto editado correctamente";
                 return RedirectToPage("Usuarios");
             }
             else

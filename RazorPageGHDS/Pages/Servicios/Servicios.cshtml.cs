@@ -12,6 +12,9 @@ namespace RazorPageGHDS.Pages
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
 
+        [TempData]
+        public string Mensaje { get; set; }
+
 
 
         //Metodo OnGet
@@ -48,6 +51,7 @@ namespace RazorPageGHDS.Pages
                 var response = await httpClient.DeleteAsync($"https://localhost:7103/api/ServiciosControllers/{CodServicio}");
                 if (response.IsSuccessStatusCode)
                 {
+                    Mensaje = "Proyecto eliminado correctamente";
                     return RedirectToPage("Servicios");
                 }
                 else

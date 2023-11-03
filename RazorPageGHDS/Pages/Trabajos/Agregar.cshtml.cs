@@ -12,8 +12,12 @@ namespace RazorPageGHDS.Pages.Trabajos
             _httpClient = new HttpClient();
         }
 
+        [TempData]
+        public string Mensaje { get; set; }
+
         [BindProperty]
         public TrabajosDto Trabajo { get; set; }
+
 
 
         public async Task<IActionResult> OnPostAsync()
@@ -26,6 +30,7 @@ namespace RazorPageGHDS.Pages.Trabajos
 
             if (response.IsSuccessStatusCode)
             {
+                Mensaje = "Trabajo creado correctamente";
                 return RedirectToPage("Trabajos");
             }
             else

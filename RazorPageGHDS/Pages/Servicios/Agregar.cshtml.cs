@@ -13,6 +13,8 @@ namespace RazorPageGHDS.Pages.Servicios
 
         [BindProperty]
         public GestorHorasDeServicios.Models.Servicios Servicio { get; set; }
+        [TempData]
+        public string Mensaje { get; set; }
 
 
         public async Task<IActionResult> OnPostAsync()
@@ -25,6 +27,7 @@ namespace RazorPageGHDS.Pages.Servicios
 
             if (response.IsSuccessStatusCode)
             {
+                Mensaje = "Proyecto agregado correctamente";
                 return RedirectToPage("Servicios");
             }
             else

@@ -12,9 +12,12 @@ namespace RazorPageGHDS.Pages.Trabajos
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
 
+        [TempData]
+        public string Mensaje { get; set; }
 
 
-//Metodo OnGet
+
+        //Metodo OnGet
         public async Task OnGetAsync(int pageNumber = 1, int pageSize = 5)
         {
             using (var httpClient = new HttpClient())
@@ -48,6 +51,7 @@ namespace RazorPageGHDS.Pages.Trabajos
                 var response = await httpClient.DeleteAsync($"https://localhost:7103/api/TrabajosControllers/{CodTrabajo}");
                 if (response.IsSuccessStatusCode)
                 {
+                    Mensaje = "Trabajo eliminado correctamente";
                     return RedirectToPage("Trabajos");
                 }
                 else

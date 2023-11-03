@@ -16,6 +16,8 @@ namespace RazorPageGHDS.Pages.Trabajos
 
         [BindProperty]
         public TrabajosDto Trabajo { get; set; }
+        [TempData]
+        public string Mensaje { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int CodTrabajo)
         {
@@ -42,6 +44,7 @@ namespace RazorPageGHDS.Pages.Trabajos
 
             if (response.IsSuccessStatusCode)
             {
+                Mensaje = "Trabajo editado correctamente";
                 return RedirectToPage("Trabajos");
             }
             else
