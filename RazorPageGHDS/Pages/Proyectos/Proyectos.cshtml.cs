@@ -10,7 +10,7 @@ namespace RazorPageGHDS.Pages.Proyectos
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
 
-        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 2)
+        public async Task OnGetAsync(int pageNumber = 1, int pageSize = 5)
         {
             using (var httpClient = new HttpClient())
             {
