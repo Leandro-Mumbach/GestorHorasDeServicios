@@ -21,7 +21,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Get([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
             var trabajos = await _trabajosServices.GetAllTrabajos(pageNumber, pageSize);
@@ -30,7 +30,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet("{CodTrabajo}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> GetById(int CodTrabajo)
         {
             var trabajo = await _trabajosServices.GetTrabajosById(CodTrabajo);
@@ -42,7 +42,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult>Post(Trabajos trabajo)
         {
             await _trabajosServices.AddTrabajos(trabajo);
@@ -51,7 +51,7 @@ namespace GestorHorasDeServicios.Controllers
 
 
         [HttpPut("{CodTrabajo}")]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult>Put(int CodTrabajo, Trabajos updatedTrabajo)
         {
             var trabajo = await _trabajosServices.GetTrabajosById(CodTrabajo);
@@ -68,7 +68,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpDelete("{CodTrabajo}")]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult>Delete(int CodTrabajo)
         {
             var trabajo = await _trabajosServices.GetTrabajosById(CodTrabajo);

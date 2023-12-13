@@ -17,7 +17,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Get(int pageNumber = 1, int pageSize = 5)
         {
             var servicios = await _serviciosServices.GetAllServicios(pageNumber, pageSize);
@@ -25,7 +25,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet("{CodServicio}")]
-        //[Authorize]
+        [Authorize]
         public async Task <IActionResult> Get(int CodServicio)
         {
             var servicio = await _serviciosServices.GetServiciosById(CodServicio);
@@ -37,7 +37,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet("estado/{Estado}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Get(bool Estado)
         {
             var servicios = await _serviciosServices.GetServiciosState(Estado);
@@ -45,7 +45,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task <IActionResult> Post(Servicios servicio)
         {
             await _serviciosServices.AddServicio(servicio);
@@ -54,7 +54,7 @@ namespace GestorHorasDeServicios.Controllers
 
 
         [HttpPut("{CodServicio}")]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task <IActionResult> Put(int CodServicio, Servicios updatedServicio)
         {
             var servicio = await _serviciosServices.GetServiciosById(CodServicio);
@@ -70,7 +70,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpDelete("{CodServicio}")]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task <IActionResult> Delete(int CodServicio)
         {
             var servicio = await _serviciosServices.GetServiciosById(CodServicio);

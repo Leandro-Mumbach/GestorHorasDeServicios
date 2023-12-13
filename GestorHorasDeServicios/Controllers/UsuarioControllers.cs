@@ -23,7 +23,7 @@ namespace GestorHorasDeServicios.Controllers
         
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task <IActionResult> Get(int pageNumber, int pageSize)
         {
             var usuarios =await _usuarioServices.ObtenerTodosUsuarios(pageNumber, pageSize);
@@ -32,7 +32,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpGet("{CodUsuario}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Get(int CodUsuario)
         {
             var usuario =await _usuarioServices.ObtenerUsuario(CodUsuario);
@@ -44,7 +44,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Post(Usuario usuario)
         {
             await _usuarioServices.AgregarUsuario(usuario);
@@ -54,7 +54,7 @@ namespace GestorHorasDeServicios.Controllers
 
     
         [HttpPut("{CodUsuario}")]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Put(int CodUsuario, UsuarioDto updatedUsuario)
         {
             var usuario = await _usuarioServices.ObtenerUsuario(CodUsuario);
@@ -72,7 +72,7 @@ namespace GestorHorasDeServicios.Controllers
         }
 
         [HttpDelete("{CodUsuario}")]
-        //[Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Delete(int CodUsuario)
         {
             var usuario = await _usuarioServices.ObtenerUsuario(CodUsuario);

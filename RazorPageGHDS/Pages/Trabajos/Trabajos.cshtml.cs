@@ -7,6 +7,13 @@ namespace RazorPageGHDS.Pages.Trabajos
 {
     public class TrabajosModel : PageModel
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public TrabajosModel(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
         public List<TrabajosDto> Trabajos { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -22,9 +29,10 @@ namespace RazorPageGHDS.Pages.Trabajos
         {
             using (var httpClient = new HttpClient())
             {
-                var token = "";
-                var response = await httpClient.GetAsync($"https://localhost:7103/api/TrabajosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
+                var response = await httpClient.GetAsync($"https://localhost:7103/api/TrabajosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
                 if (response.IsSuccessStatusCode)
                 {
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -48,6 +56,9 @@ namespace RazorPageGHDS.Pages.Trabajos
         {
             using (var httpClient = new HttpClient())
             {
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 var response = await httpClient.DeleteAsync($"https://localhost:7103/api/TrabajosControllers/{CodTrabajo}");
                 if (response.IsSuccessStatusCode)
                 {

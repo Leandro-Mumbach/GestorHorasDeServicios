@@ -1,10 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net.Http.Headers;
 
 namespace RazorPageGHDS.Pages.Proyectos
 {
     public class ProyectosModel : PageModel
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ProyectosModel(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
         public List<GestorHorasDeServicios.Models.Proyectos> proyectos { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -17,6 +23,9 @@ namespace RazorPageGHDS.Pages.Proyectos
         {
             using (var httpClient = new HttpClient())
             {
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 var response = await httpClient.GetAsync($"https://localhost:7103/api/ProyectosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
 
                 if (response.IsSuccessStatusCode)
@@ -38,6 +47,9 @@ namespace RazorPageGHDS.Pages.Proyectos
         {
             using (var httpClient = new HttpClient())
             {
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 var response = await httpClient.DeleteAsync($"https://localhost:7103/api/ProyectosControllers/{CodProyecto}");
                 if (response.IsSuccessStatusCode)
                 {

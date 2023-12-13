@@ -1,16 +1,20 @@
 using GestorHorasDeServicios.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net.Http.Headers;
+using System.Net.Http;
 
 namespace RazorPageGHDS.Pages.Proyectos
 {
     public class EditarModel : PageModel
     {
         private readonly HttpClient _httpClient;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EditarModel()
+        public EditarModel(IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = new HttpClient();
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [BindProperty]
@@ -20,6 +24,9 @@ namespace RazorPageGHDS.Pages.Proyectos
 
         public async Task<IActionResult> OnGetAsync(int CodProyecto)
         {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var response = await _httpClient.GetAsync($"https://localhost:7103/api/ProyectosControllers/" + CodProyecto);
 
             if (response.IsSuccessStatusCode)
@@ -39,6 +46,9 @@ namespace RazorPageGHDS.Pages.Proyectos
             {
                 return Page();
             }
+            var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var response = await _httpClient.PutAsJsonAsync($"https://localhost:7103/api/ProyectosControllers/{Proyecto.CodProyecto}", Proyecto);
 
             if (response.IsSuccessStatusCode)

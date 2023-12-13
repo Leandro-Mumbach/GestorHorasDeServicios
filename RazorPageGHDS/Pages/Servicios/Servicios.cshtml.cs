@@ -7,6 +7,13 @@ namespace RazorPageGHDS.Pages
 {
     public class ServiciosModel : PageModel
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public ServiciosModel(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
         public List<GestorHorasDeServicios.Models.Servicios> Servicios { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -22,9 +29,10 @@ namespace RazorPageGHDS.Pages
         {
             using (var httpClient = new HttpClient())
             {
-                var token = "";
-                var response = await httpClient.GetAsync($"https://localhost:7103/api/ServiciosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
+                var response = await httpClient.GetAsync($"https://localhost:7103/api/ServiciosControllers?pageNumber={pageNumber}&pageSize={pageSize}");
                 if (response.IsSuccessStatusCode)
                 {
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -48,6 +56,9 @@ namespace RazorPageGHDS.Pages
         {
             using (var httpClient = new HttpClient())
             {
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 var response = await httpClient.DeleteAsync($"https://localhost:7103/api/ServiciosControllers/{CodServicio}");
                 if (response.IsSuccessStatusCode)
                 {

@@ -7,6 +7,12 @@ namespace RazorPageGHDS.Pages
 {
     public class UsuariosModel : PageModel
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public UsuariosModel(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
         public List<UsuarioDto> Usuario { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -22,12 +28,13 @@ namespace RazorPageGHDS.Pages
         {
             using (var httpClient = new HttpClient())
             {
-                var token = "";
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 var response = await httpClient.GetAsync($"https://localhost:7103/api/UsuarioControllers?pageNumber={pageNumber}&pageSize={pageSize}");
 
                 if (response.IsSuccessStatusCode)
                 {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     Usuario = await response.Content.ReadFromJsonAsync<List<UsuarioDto>>();
 
                     TotalPages = Usuario.Count;//(int)Math.Ceiling((double)Trabajos.Count / PageSize)
@@ -48,6 +55,9 @@ namespace RazorPageGHDS.Pages
         {
             using (var httpClient = new HttpClient())
             {
+                var token = _httpContextAccessor.HttpContext.Session.GetString("NewSession");
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                 var response = await httpClient.DeleteAsync($"https://localhost:7103/api/UsuarioControllers/{CodUsuario}");
                 if (response.IsSuccessStatusCode)
                 {
